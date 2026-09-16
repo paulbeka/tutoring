@@ -299,21 +299,20 @@ h2 em {
 .avatar-stack {
   display: flex;
   padding-right: 2px;
+  flex-shrink: 0;
 }
-.avatar-stack > span {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--serif);
-  font-size: 17px;
-  width: 38px;
-  height: 38px;
+.avatar-stack > img {
+  display: block;
+  object-fit: cover;
+  object-position: center 25%;
+  width: 48px;
+  height: 48px;
   border: 2px solid var(--paper);
   border-radius: 50%;
   background: #e0e5d8;
 }
-.avatar-stack > span + span {
-  margin-left: -9px;
+.avatar-stack > img + img {
+  margin-left: -12px;
   background: #e9e1d0;
 }
 .hero-people p {
@@ -667,7 +666,7 @@ details[open] > summary > svg {
 .about-inner {
   display: grid;
   grid-template-columns: 1fr 1.08fr;
-  gap: 105px;
+  gap: 70px;
   align-items: center;
 }
 .about-copy h2 {
@@ -698,41 +697,75 @@ details[open] > summary > svg {
   height: 1px;
   background: #93a380;
 }
+.london-photo,
+.study-photo {
+  margin: 0;
+  min-width: 0;
+}
+.london-photo {
+  margin-top: 30px;
+}
+.london-photo > img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 2.45;
+  object-fit: cover;
+  object-position: center 64%;
+  border-radius: 2px;
+}
+.london-photo figcaption,
+.study-photo figcaption {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px 14px;
+  margin-top: 12px;
+  color: #5f6e58;
+  font-size: 9px;
+  line-height: 1.6;
+}
+.london-photo figcaption > span,
+.london-photo figcaption a,
+.study-photo figcaption a {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+.london-photo figcaption a,
+.study-photo figcaption a {
+  font-size: 8px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
 .tutors {
   display: flex;
   flex-direction: column;
 }
 .tutor-card {
   display: grid;
-  grid-template-columns: 90px 1fr;
+  grid-template-columns: 160px 1fr;
   gap: 24px;
+  align-items: center;
   padding: 29px 0;
 }
 .tutor-card + .tutor-card {
   border-top: 1px solid #d3dccb;
 }
 .tutor-avatar {
-  height: 108px;
+  height: 200px;
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--serif);
-  font-size: 42px;
   background: #dbe2d2;
-  color: #536c50;
   overflow: hidden;
-  background-image: repeating-linear-gradient(
-    135deg,
-    transparent,
-    transparent 9px,
-    #536c5007 9px,
-    #536c5007 10px
-  );
+  border-radius: 2px;
 }
-.tutor-avatar-katarzyna {
-  background-color: #e4dfce;
-  color: #7a7050;
+.tutor-avatar > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
 }
 .tutor-avatar > span {
   display: flex;
@@ -741,8 +774,8 @@ details[open] > summary > svg {
   position: absolute;
   bottom: 0;
   right: 0;
-  width: 28px;
-  height: 28px;
+  width: 34px;
+  height: 34px;
   background: #f0f2e8;
   color: var(--ink);
 }
@@ -778,11 +811,71 @@ details[open] > summary > svg {
   display: block;
   margin-top: 15px;
 }
+.approach-content {
+  display: grid;
+  grid-template-columns: 1fr 1.05fr;
+  align-items: center;
+  gap: 75px;
+  margin-top: 45px;
+}
+.study-photo-frame {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-radius: 2px;
+  background: var(--ink);
+}
+.study-photo-frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(180deg, transparent 35%, #102e27ed);
+  pointer-events: none;
+}
+.study-photo-frame > img {
+  display: block;
+  width: 100%;
+  height: 405px;
+  object-fit: cover;
+}
+.study-photo-note {
+  position: absolute;
+  bottom: 30px;
+  left: 30px;
+  right: 24px;
+  z-index: 2;
+  color: #faf9f5;
+}
+.study-photo-note .eyebrow {
+  font-size: 8px;
+  letter-spacing: 1.4px;
+}
+.study-photo-note p {
+  font-family: var(--serif);
+  font-size: 39px;
+  line-height: 1.08;
+  margin-top: 13px;
+}
+.study-photo-note em {
+  color: #dce4cf;
+}
 .steps {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 51px;
-  margin-top: 45px;
+  gap: 28px;
+}
+.step {
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr);
+  column-gap: 20px;
+}
+.step-number {
+  grid-row: 1 / 3;
+  align-self: start;
+}
+.step-number > svg,
+.step-line {
+  display: none;
 }
 .step-number {
   display: flex;
@@ -823,7 +916,7 @@ details[open] > summary > svg {
   font-size: 12px;
   line-height: 1.9;
   color: var(--muted);
-  max-width: 310px;
+  max-width: 390px;
 }
 .approach-banner {
   margin-top: 40px;
@@ -916,11 +1009,19 @@ details[open] > summary > svg {
   max-width: 300px;
   margin-top: 24px;
 }
+.contact-people {
+  display: flex;
+  align-items: center;
+  gap: 17px;
+  margin-top: 31px;
+}
+.contact-people .avatar-stack > img {
+  border-color: #193f35;
+}
 .contact-signature {
   display: flex;
   flex-direction: column;
   gap: 11px;
-  margin-top: 31px;
 }
 .contact-signature > span:first-child {
   font-family: var(--serif);
@@ -1372,12 +1473,11 @@ details[open] > summary > svg {
     font-size: 12px;
   }
   .tutor-card {
-    grid-template-columns: 66px 1fr;
+    grid-template-columns: 110px minmax(0, 1fr);
     gap: 15px;
   }
   .tutor-avatar {
-    height: 88px;
-    font-size: 32px;
+    height: 150px;
   }
   .tutor-details h3 {
     font-size: 26px;
@@ -1394,6 +1494,17 @@ details[open] > summary > svg {
   }
   .steps {
     gap: 28px;
+  }
+  .approach-content {
+    gap: 35px;
+  }
+  .step {
+    grid-template-columns: 30px minmax(0, 1fr);
+    column-gap: 12px;
+  }
+  .study-photo-note {
+    left: 23px;
+    bottom: 25px;
   }
   .step h3 {
     font-size: 24px;
@@ -1545,9 +1656,9 @@ details[open] > summary > svg {
   .hero-people p > span {
     font-size: 10px;
   }
-  .avatar-stack > span {
-    width: 37px;
-    height: 37px;
+  .avatar-stack > img {
+    width: 44px;
+    height: 44px;
   }
   .visual-wrap {
     margin-left: 15px;
@@ -1719,7 +1830,7 @@ details[open] > summary > svg {
     margin-top: 22px;
   }
   .tutor-card {
-    grid-template-columns: 85px 1fr;
+    grid-template-columns: clamp(105px, 30vw, 150px) minmax(0, 1fr);
     gap: 21px;
     padding: 25px 0;
   }
@@ -1727,11 +1838,11 @@ details[open] > summary > svg {
     padding-bottom: 0;
   }
   .tutor-avatar {
-    height: 108px;
-    font-size: 40px;
+    height: auto;
+    aspect-ratio: 4 / 5;
   }
   .tutor-details h3 {
-    font-size: 31px;
+    font-size: 29px;
   }
   .tutor-role {
     font-size: 7px;
@@ -1747,10 +1858,21 @@ details[open] > summary > svg {
   .tutor-focus {
     font-size: 7px;
   }
-  .steps {
+  .approach-content {
     grid-template-columns: 1fr;
-    gap: 27px;
+    gap: 32px;
     margin-top: 29px;
+  }
+  .study-photo-frame > img {
+    height: auto;
+    aspect-ratio: 1.2;
+    max-height: 390px;
+  }
+  .study-photo-note p {
+    font-size: 35px;
+  }
+  .steps {
+    gap: 27px;
   }
   .step {
     display: grid;
@@ -1829,7 +1951,7 @@ details[open] > summary > svg {
     font-size: 13px;
     max-width: 390px;
   }
-  .contact-signature {
+  .contact-people {
     margin-top: 24px;
   }
   .contact-copy {
@@ -1958,6 +2080,20 @@ details[open] > summary > svg {
   }
   .tags > span {
     font-size: 6px;
+  }
+  .hero-people p,
+  .hero-people p > span {
+    font-size: 9px;
+  }
+  .tutor-card {
+    grid-template-columns: 95px minmax(0, 1fr);
+    gap: 16px;
+  }
+  .tutor-details h3 {
+    font-size: 27px;
+  }
+  .tutor-role {
+    line-height: 1.6;
   }
   .subject-details summary {
     font-size: 9px;

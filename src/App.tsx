@@ -148,6 +148,27 @@ function Brand({ light = false }: { light?: boolean }) {
   );
 }
 
+function TutorPortraits() {
+  return (
+    <div className="avatar-stack" aria-hidden="true">
+      <img
+        src="/images/paul-portrait.jpg"
+        alt=""
+        width={48}
+        height={48}
+        decoding="async"
+      />
+      <img
+        src="/images/kasia.jpg"
+        alt=""
+        width={48}
+        height={48}
+        decoding="async"
+      />
+    </div>
+  );
+}
+
 function QuantVisual() {
   const project = (u: number, v: number) => {
     const z =
@@ -582,10 +603,7 @@ export default function App() {
               </a>
             </div>
             <div className="hero-people">
-              <div className="avatar-stack">
-                <span>PB</span>
-                <span>KP</span>
-              </div>
+              <TutorPortraits />
               <p>
                 Paul Bekaert & Katarzyna Pastuszka
                 <span>
@@ -723,15 +741,41 @@ export default function App() {
                 <span className="small-rule" />
                 <span>Two perspectives. One focus: your progress.</span>
               </div>
+              <figure className="london-photo">
+                <img
+                  src="/images/london-skyline.webp"
+                  alt="The City of London skyline above the River Thames"
+                  width={1200}
+                  height={800}
+                  loading="lazy"
+                  decoding="async"
+                />
+                <figcaption>
+                  <span>
+                    <MapPin size={12} /> London perspective. Wherever you are.
+                  </span>
+                  <a
+                    href="https://unsplash.com/photos/city-skyline-under-blue-sky-during-daytime-mVXskviY-PQ"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Photo: Jamie / Unsplash <ArrowUpRight size={10} />
+                  </a>
+                </figcaption>
+              </figure>
             </div>
             <div className="tutors">
               <article className="tutor-card">
-                <div
-                  className="tutor-avatar tutor-avatar-paul"
-                  aria-hidden="true"
-                >
-                  PB
-                  <span>
+                <div className="tutor-avatar tutor-avatar-paul">
+                  <img
+                    src="/images/paul-portrait.jpg"
+                    alt="Paul Bekaert"
+                    width={480}
+                    height={600}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <span aria-hidden="true">
                     <Code2 size={17} />
                   </span>
                 </div>
@@ -749,12 +793,16 @@ export default function App() {
                 </div>
               </article>
               <article className="tutor-card">
-                <div
-                  className="tutor-avatar tutor-avatar-katarzyna"
-                  aria-hidden="true"
-                >
-                  KP
-                  <span>
+                <div className="tutor-avatar tutor-avatar-katarzyna">
+                  <img
+                    src="/images/kasia.jpg"
+                    alt="Katarzyna Pastuszka"
+                    width={200}
+                    height={200}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <span aria-hidden="true">
                     <Sigma size={18} />
                   </span>
                 </div>
@@ -797,40 +845,72 @@ export default function App() {
               Just a thoughtful plan to move you forward.
             </p>
           </div>
-          <div className="steps">
-            <article className="step">
-              <div className="step-number">
-                <span>01</span>
-                <span className="step-line" />
+          <div className="approach-content">
+            <figure className="study-photo">
+              <div className="study-photo-frame">
+                <img
+                  src="/images/study-desk.webp"
+                  alt="A laptop displaying code on a bright desk beside a monitor and a small plant"
+                  width={1000}
+                  height={750}
+                  loading="lazy"
+                  decoding="async"
+                />
+                <div className="study-photo-note">
+                  <span className="eyebrow">SPACE TO THINK. ROOM TO GROW.</span>
+                  <p>
+                    A little focus.
+                    <br />
+                    <em>A step forward.</em>
+                  </p>
+                </div>
               </div>
-              <h3>Tell us where you are.</h3>
-              <p>
-                We start with your background, your questions and what you want
-                to achieve. You don’t need to have it all figured out.
-              </p>
-            </article>
-            <article className="step">
-              <div className="step-number">
-                <span>02</span>
-                <span className="step-line" />
-              </div>
-              <h3>Make a plan together.</h3>
-              <p>
-                We identify what matters most and shape a learning plan around
-                your level, your schedule and your next milestone.
-              </p>
-            </article>
-            <article className="step">
-              <div className="step-number">
-                <span>03</span>
-                <Check size={21} strokeWidth={1.4} />
-              </div>
-              <h3>Learn. Apply. Progress.</h3>
-              <p>
-                Work through ideas, put them into practice and get honest
-                feedback. Build understanding you can take with you.
-              </p>
-            </article>
+              <figcaption>
+                <span>Your questions. Your pace.</span>
+                <a
+                  href="https://unsplash.com/photos/a-macbook-with-lines-of-code-on-its-screen-on-a-busy-desk-m_HRfLhgABo"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Photo: Christopher Gower / Unsplash <ArrowUpRight size={10} />
+                </a>
+              </figcaption>
+            </figure>
+            <div className="steps">
+              <article className="step">
+                <div className="step-number">
+                  <span>01</span>
+                  <span className="step-line" />
+                </div>
+                <h3>Tell us where you are.</h3>
+                <p>
+                  We start with your background, your questions and what you
+                  want to achieve. You don’t need to have it all figured out.
+                </p>
+              </article>
+              <article className="step">
+                <div className="step-number">
+                  <span>02</span>
+                  <span className="step-line" />
+                </div>
+                <h3>Make a plan together.</h3>
+                <p>
+                  We identify what matters most and shape a learning plan around
+                  your level, your schedule and your next milestone.
+                </p>
+              </article>
+              <article className="step">
+                <div className="step-number">
+                  <span>03</span>
+                  <Check size={21} strokeWidth={1.4} />
+                </div>
+                <h3>Learn. Apply. Progress.</h3>
+                <p>
+                  Work through ideas, put them into practice and get honest
+                  feedback. Build understanding you can take with you.
+                </p>
+              </article>
+            </div>
           </div>
           <div className="approach-banner">
             <span>
@@ -885,11 +965,14 @@ export default function App() {
                 Tell us a little about yourself and where you’d like to go.
                 We’ll work out how we can help.
               </p>
-              <div className="contact-signature">
-                <span>Paul & Katarzyna</span>
-                <span>
-                  <MapPin size={13} /> London, United Kingdom
-                </span>
+              <div className="contact-people">
+                <TutorPortraits />
+                <div className="contact-signature">
+                  <span>Paul & Katarzyna</span>
+                  <span>
+                    <MapPin size={13} /> London, United Kingdom
+                  </span>
+                </div>
               </div>
               <ArrowDown className="contact-arrow" size={34} strokeWidth={1} />
             </div>

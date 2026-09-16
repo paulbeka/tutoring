@@ -37,6 +37,7 @@ Rebuild after changing environment variables. The enquiry form validates the vis
 - Tutor biographies, topics and FAQs: `src/App.tsx`.
 - Design, responsive layout and reduced-motion support: `src/styles.css`.
 - Metadata: `index.html`.
+- Photography: `public/images/`. Tutor portraits are used in the introduction, profiles and contact section; locally hosted Unsplash photos illustrate London and the learning approach. Sources and licensing are recorded in [image credits](public/images/CREDITS.md). Paul's original photo is retained alongside a compressed portrait crop; the website loads only the smaller version.
 - No specific universities, employers, rates, testimonials or placement claims have been invented. Add confirmed details when available.
 
 ## Accessibility
