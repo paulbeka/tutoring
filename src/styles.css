@@ -1046,6 +1046,54 @@ details[open] > summary > svg {
   border: 1px solid #dde2d6;
   border-radius: 2px;
 }
+.enquiry-form fieldset {
+  min-width: 0;
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+.enquiry-form button:disabled,
+.enquiry-form fieldset:disabled button {
+  cursor: not-allowed;
+  opacity: 0.65;
+  transform: none;
+}
+.captcha-wrap {
+  margin: 0 0 22px;
+}
+.captcha-label {
+  font-size: 11px;
+  margin-bottom: 10px;
+}
+.captcha-error,
+.form-feedback {
+  font-size: 12px;
+  line-height: 1.7;
+}
+.captcha-error,
+.form-feedback-error {
+  color: #88372b;
+}
+.captcha-error .text-link {
+  margin-top: 8px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  text-decoration: underline;
+}
+.form-feedback:not(:empty) {
+  margin-top: 18px;
+  padding: 12px 14px;
+  border: 1px solid currentColor;
+}
+.enquiry-form .form-note {
+  font-size: 10px;
+}
+.form-note a {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
 .enquiry-form label {
   display: block;
   font-size: 10px;
@@ -1127,61 +1175,6 @@ details[open] > summary > svg {
   line-height: 1.65;
   color: #63715a;
   margin-top: 17px;
-}
-.enquiry-dialog {
-  width: min(570px, calc(100% - 32px));
-  max-height: 90vh;
-  padding: 37px;
-  border: 1px solid var(--line);
-  background: var(--paper);
-  color: var(--ink);
-  box-shadow: 0 20px 120px #071e1950;
-  overflow: auto;
-}
-.enquiry-dialog::backdrop {
-  background: #08261dd6;
-  backdrop-filter: blur(4px);
-}
-.dialog-close {
-  position: absolute;
-  right: 9px;
-  top: 9px;
-}
-.enquiry-dialog h2 {
-  font-size: 42px;
-  margin: 15px 0;
-}
-.enquiry-dialog > p {
-  font-size: 12px;
-  line-height: 1.8;
-  color: var(--muted);
-}
-.enquiry-preview {
-  display: block;
-  width: 100%;
-  margin: 20px 0;
-  padding: 17px;
-  border: 1px solid var(--line);
-  background: #f0f2e8;
-  color: #4f644b;
-  font-size: 12px;
-  line-height: 1.8;
-  resize: vertical;
-}
-.dialog-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-.dialog-actions .button {
-  font-size: 11px;
-  gap: 10px;
-  padding: 13px 16px;
-}
-.enquiry-dialog .copy-status {
-  margin-top: 12px;
-  font-size: 11px;
-  min-height: 20px;
 }
 .site-footer {
   padding-top: 35px;
@@ -2011,18 +2004,6 @@ details[open] > summary > svg {
     gap: 6px;
     padding-top: 17px;
     padding-bottom: 20px;
-  }
-  .enquiry-dialog {
-    padding: 32px 22px 24px;
-  }
-  .enquiry-dialog h2 {
-    font-size: 36px;
-  }
-  .dialog-actions {
-    flex-direction: column;
-  }
-  .enquiry-preview {
-    font-size: 11px;
   }
 }
 @media (max-width: 370px) {

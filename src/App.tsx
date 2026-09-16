@@ -1,14 +1,11 @@
-import { useEffect, useRef, useState } from "react";
-import type { FormEvent } from "react";
+import { useEffect, useState } from "react";
+import EnquiryForm from "./EnquiryForm";
 import {
   ArrowDown,
   ArrowRight,
   ArrowUpRight,
   Check,
-  CheckCheck,
-  ChevronDown,
   Code2,
-  Copy,
   GraduationCap,
   MapPin,
   Menu,
@@ -322,201 +319,6 @@ function QuantVisual() {
         LONDON MINDS. OPEN POSSIBILITIES.
       </span>
     </div>
-  );
-}
-
-function EnquiryForm({
-  interest,
-  onInterestChange,
-}: {
-  interest: string;
-  onInterestChange: (value: string) => void;
-}) {
-  const dialogRef = useRef<HTMLDialogElement>(null);
-  const copyRef = useRef<HTMLTextAreaElement>(null);
-  const [enquiry, setEnquiry] = useState("");
-  const [copied, setCopied] = useState(false);
-  const [copyFailed, setCopyFailed] = useState(false);
-  const contactEmail = import.meta.env.VITE_CONTACT_EMAIL?.trim();
-  const emailAvailable = Boolean(
-    contactEmail && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contactEmail),
-  );
-
-  useEffect(() => {
-    const dialog = dialogRef.current;
-    if (!dialog) return;
-    const unlockScroll = () => {
-      document.body.style.overflow = "";
-    };
-    dialog.addEventListener("close", unlockScroll);
-    return () => {
-      dialog.removeEventListener("close", unlockScroll);
-      unlockScroll();
-    };
-  }, []);
-
-  function submit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    setEnquiry(
-      `Hello Paul and Katarzyna,\n\nI am interested in ${interest || "finding the right starting point"}.\n\n${String(data.get("message")).trim()}\n\nName: ${String(data.get("name")).trim()}\nEmail: ${String(data.get("email")).trim()}`,
-    );
-    setCopied(false);
-    setCopyFailed(false);
-    dialogRef.current?.showModal();
-    document.body.style.overflow = "hidden";
-  }
-
-  async function copyEnquiry() {
-    try {
-      await navigator.clipboard.writeText(enquiry);
-      setCopied(true);
-      setCopyFailed(false);
-    } catch {
-      setCopyFailed(true);
-      copyRef.current?.focus();
-      copyRef.current?.select();
-    }
-  }
-
-  return (
-    <>
-      <form className="enquiry-form" onSubmit={submit}>
-        <div className="form-row">
-          <label>
-            Your name
-            <input
-              name="name"
-              autoComplete="name"
-              placeholder="Alex Taylor"
-              required
-              maxLength={100}
-            />
-          </label>
-          <label>
-            Email address
-            <input
-              name="email"
-              type="email"
-              autoComplete="email"
-              placeholder="alex@example.com"
-              required
-              maxLength={254}
-            />
-          </label>
-        </div>
-        <label>
-          What would you like to work on?
-          <span className="select-wrap">
-            <select
-              name="interest"
-              value={interest}
-              onChange={(event) => onInterestChange(event.target.value)}
-              required
-            >
-              <option value="" disabled>
-                Select your starting point
-              </option>
-              {subjects.map((subject) => (
-                <option key={subject.id} value={subject.category}>
-                  {subject.category}
-                </option>
-              ))}
-              <option value="a little guidance on where to start">
-                I’m not sure yet — let’s figure it out
-              </option>
-            </select>
-            <ChevronDown size={17} />
-          </span>
-        </label>
-        <label>
-          A little about you
-          <textarea
-            name="message"
-            placeholder="What are you studying? What would you like to achieve? Tell us where you are and where you want to go."
-            rows={4}
-            required
-            maxLength={3000}
-          />
-        </label>
-        <div className="form-bottom">
-          <span>
-            Every good plan starts
-            <br />
-            with a conversation.
-          </span>
-          <button className="button button-primary" type="submit">
-            Prepare enquiry
-            <ArrowUpRight size={17} />
-          </button>
-        </div>
-        <p className="form-note">
-          {emailAvailable
-            ? "Review your note, then send it using your email app."
-            : "Create a note to copy and share with your tutors. Nothing is sent automatically."}
-        </p>
-      </form>
-      <dialog
-        className="enquiry-dialog"
-        ref={dialogRef}
-        aria-labelledby="enquiry-title"
-        onClick={(event) => {
-          if (event.target === event.currentTarget) dialogRef.current?.close();
-        }}
-      >
-        <button
-          className="dialog-close icon-button"
-          type="button"
-          aria-label="Close enquiry preview"
-          onClick={() => dialogRef.current?.close()}
-        >
-          <X size={22} />
-        </button>
-        <span className="eyebrow">YOUR NEXT CHAPTER</span>
-        <h2 id="enquiry-title">
-          Your enquiry, <em>ready to go.</em>
-        </h2>
-        <p>
-          {emailAvailable
-            ? "Give your note a quick review. Open it in your email app to send it to us, or copy it for later."
-            : "Your note is ready. Copy it and share it directly with Paul or Katarzyna when you have their contact details. It has not been sent."}
-        </p>
-        <textarea
-          ref={copyRef}
-          className="enquiry-preview"
-          aria-label="Your prepared enquiry"
-          value={enquiry}
-          readOnly
-          rows={10}
-        />
-        <div className="dialog-actions">
-          <button
-            type="button"
-            className="button button-primary"
-            onClick={copyEnquiry}
-          >
-            {copied ? <CheckCheck size={17} /> : <Copy size={17} />}
-            {copied ? "Copied to clipboard" : "Copy enquiry"}
-          </button>
-          {emailAvailable && (
-            <a
-              className="button button-outline"
-              href={`mailto:${contactEmail}?subject=${encodeURIComponent("Tutoring enquiry — " + interest)}&body=${encodeURIComponent(enquiry)}`}
-            >
-              Open email app
-              <ArrowUpRight size={16} />
-            </a>
-          )}
-        </div>
-        <p className="copy-status" role="status">
-          {copied
-            ? "Ready to paste into a message or email."
-            : copyFailed
-              ? "Select and copy the note above using your device’s copy command."
-              : ""}
-        </p>
-      </dialog>
-    </>
   );
 }
 
@@ -976,7 +778,11 @@ export default function App() {
               </div>
               <ArrowDown className="contact-arrow" size={34} strokeWidth={1} />
             </div>
-            <EnquiryForm interest={interest} onInterestChange={setInterest} />
+            <EnquiryForm
+              interest={interest}
+              onInterestChange={setInterest}
+              categories={subjects.map((subject) => subject.category)}
+            />
           </div>
         </section>
       </main>
