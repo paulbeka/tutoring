@@ -20,6 +20,8 @@ import {
   Wrench,
   X,
 } from "lucide-react";
+import { Analytics } from "@vercel/analytics/next"
+
 
 const subjects = [
   {
@@ -336,6 +338,7 @@ export default function App() {
 
   return (
     <>
+      <Analytics/>
       <a href="#main" className="skip-link">
         Skip to content
       </a>
