@@ -337,7 +337,6 @@ export default function App() {
 
   return (
     <>
-      <Analytics/>
       <a href="#main" className="skip-link">
         Skip to content
       </a>
@@ -806,6 +805,7 @@ export default function App() {
           <span>Independent tutoring & mentoring · London</span>
         </div>
       </footer>
+      <Analytics />
     </>
   );
 }
