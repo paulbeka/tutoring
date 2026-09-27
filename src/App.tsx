@@ -20,8 +20,7 @@ import {
   Wrench,
   X,
 } from "lucide-react";
-import { Analytics } from "@vercel/analytics/next"
-
+import { Analytics } from "@vercel/analytics/react";
 
 const subjects = [
   {
